@@ -36,6 +36,9 @@ public class NoticeReg extends HttpServlet {
 			response.setCharacterEncoding("UTF-8");
 			//어떻게 해석할 것인가를 지정(html문서이며, UTF-8 문자 코드로 읽는다)
 			
+			//POST로 전달하는 경우 요청 받는 패킷도 문자코드를 지정해주어야 함
+			//TOMCAT 서버의 기본 문자 코드가 UTF-8이 아니기 떄문
+			request.setCharacterEncoding("UTF-8");
 			/*
 			 * HTML로 출력시 : setContentType("text/html");
 			 * 일반 TEXT로 출력시 : setContentType("text/plain");
