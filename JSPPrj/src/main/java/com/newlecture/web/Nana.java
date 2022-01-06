@@ -32,15 +32,15 @@ public class Nana extends HttpServlet {
 			 * 이미지 JPG, JPEG로 출력시 : setContentType("image/jpeg");
 			 **/
 			
-			response.setContentType("text/plain; charset=UTF-8");
+			response.setContentType("text/html; charset=UTF-8");
 			
 			
 			PrintWriter out = response.getWriter();
 			for(int i = 0; i<100; i++) {
 				
-//				out.println((i+1) + " : 안녕 서블릿!@@ <br>");
+				out.println((i+1) + " : 안녕 서블릿!@@ <br>");
 				
-				out.println((i+1) + " : 안녕 서블릿!@@");
+//				out.println((i+1) + " : 안녕 서블릿!@@");
 				 			}
 		}
 }
