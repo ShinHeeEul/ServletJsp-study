@@ -9,7 +9,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
-@WebServlet("/calculate")
+@WebServlet("/add")
 
 public class Calculate extends HttpServlet {
 
@@ -25,7 +25,15 @@ public class Calculate extends HttpServlet {
 		int x = 0;
 		int y = 0;
 		
-		if(str_x != null && str_y != null) {
+//		if(str_x != null && str_y != null) {
+//			x = Integer.parseInt(str_x);
+//			y = Integer.parseInt(str_y);
+//
+//			out.println(x+ "+"+ y + "=" + (x+y) + "입니다.");
+//			
+//		}
+		
+		if(!str_x.equals("") && !str_y.equals("")) {
 			x = Integer.parseInt(str_x);
 			y = Integer.parseInt(str_y);
 
