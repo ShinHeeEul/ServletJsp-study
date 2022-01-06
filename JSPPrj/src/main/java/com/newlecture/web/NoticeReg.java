@@ -22,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  *   ?    -> null
  * */
 
-@WebServlet("/hi")
-public class Nana extends HttpServlet {
+@WebServlet("/notice-reg")
+public class NoticeReg extends HttpServlet {
 		
 		@Override
 		protected void service(
@@ -49,20 +49,10 @@ public class Nana extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			
 			//request로부터 쿼리문을 가져옴
-			String temp = request.getParameter("cnt");
+			String title = request.getParameter("title");
+			String content = request.getParameter("content");
 			
-			//그 쿼리문이 빈 문자열이나 null 값이 들어올 경우 default value로 설정
-			int cnt = 10;
-			if(temp != null && !temp.equals("")) {
-				cnt = Integer.parseInt(temp);
-			}
-			
-			for(int i = 0; i<cnt; i++) {
-				
-				out.println((i+1) + " : 안녕 서블릿!@@ <br>");
-				
-//				out.println((i+1) + " : 안녕 서블릿!@@");
-
-			}
+			out.println(title);
+			out.println(content);
 		}
 }

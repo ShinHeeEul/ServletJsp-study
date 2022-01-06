@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>POST 형식으로 전달</title>
+</head>
+<body>
+<div>
+<!-- POST 형식으로 전달하는 방법  -->
+<!-- query string에 질의문이 같이 분어가면 query문에 제한이 있기 때문에 method를 post로 지정하면 요청 body에 붙어 전달된다. -->
+		<form action="notice-reg" method="post"> <!-- servlet mapping address : http://.../notice-reg -->
+		<!-- form 안이 아니면 안나온다 이거 -->
+			<div>
+				<label>제목 : </label><input type="text" name="title">
+			</div>
+			<div>
+			
+				<label>내용 : </label>
+				<textarea name="content"></textarea>
+				</div>
+			<div>
+			<input type="submit" value="등록"/>
+			</div>
+		</form>
+	</div>
+</body>
+</html>
