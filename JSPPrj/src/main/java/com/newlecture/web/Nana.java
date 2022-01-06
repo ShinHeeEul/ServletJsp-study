@@ -17,6 +17,9 @@ import javax.servlet.http.HttpServletResponse;
  * Get request * query string
  * - http://localhost/hello?cnt=3 -> 쿼리문을 get 방식으로 보낼 수 있다.
  * 	-> 동적인 문서를 제작할 수 있다.
+ *   ?cnt= -> 빈 문자열이 온다
+ *   ?cnt -> null
+ *   ?    -> null
  * */
 
 @WebServlet("/hello")
@@ -46,7 +49,13 @@ public class Nana extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			
 			//request로부터 쿼리문을 가져옴
-			int cnt = Integer.parseInt(request.getParameter("cnt"));
+			String temp = request.getParameter("cnt");
+			
+			//그 쿼리문이 빈 문자열이나 null 값이 들어올 경우 default value로 설정
+			int cnt = 10;
+			if(temp != null && !temp.equals("")) {
+				cnt = Integer.parseInt(temp);
+			}
 			
 			for(int i = 0; i<cnt; i++) {
 				
