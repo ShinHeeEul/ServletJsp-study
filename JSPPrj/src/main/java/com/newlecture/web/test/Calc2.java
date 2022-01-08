@@ -81,6 +81,8 @@ public class Calc2 extends HttpServlet {
 			value_cookie.setPath("/calc2");// 해당 servlet에만 가져오라고 설정가능
 			op_cookie.setPath("/calc2");
 			
+			value_cookie.setMaxAge(24*60*60); // 초단위, 만료 날짜를 설정 가능
+			
 			resp.addCookie(value_cookie);
 			resp.addCookie(op_cookie);
 		}
