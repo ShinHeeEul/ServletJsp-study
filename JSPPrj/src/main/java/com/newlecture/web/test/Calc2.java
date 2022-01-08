@@ -78,6 +78,9 @@ public class Calc2 extends HttpServlet {
 			
 			Cookie value_cookie = new Cookie("value", String.valueOf(v)); //쿠키는 반드시 url에 사용가능한 문자열로만 보내야 한다. JSON을 통해 변해서 전달 가능
 			Cookie op_cookie = new Cookie("op",op);
+			value_cookie.setPath("/calc2");// 해당 servlet에만 가져오라고 설정가능
+			op_cookie.setPath("/calc2");
+			
 			resp.addCookie(value_cookie);
 			resp.addCookie(op_cookie);
 		}
