@@ -33,8 +33,9 @@ pageContext.setAttribute("result", "hello");
 	${names[1]}<br >
 	${notice.title}<br>
 	${result}<br >
-	${param.n}
-	${header.cookie}
-	${pageContext.request.method}
+	<!-- empty는 spag or spag?n= 의 경우 true -->
+	${empty param.n?'값이 비어있습니다':param.n} <br>
+	${header.cookie} <br>
+	${pageContext.request.method} 
 </body>
 </html>
