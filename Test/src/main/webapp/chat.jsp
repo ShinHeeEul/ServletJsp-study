@@ -1,8 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
-<title>ㅎㅎㅎㅎ</title>
+<title>아놔 진짜</title>
 <style>
 input {
 	width: 50px;
@@ -20,19 +23,23 @@ input {
 </style>
 </head>
 <body>
-	<form action="chat" method="post">
-	<!-- div = Division의 약자로 보통 레이아웃 배치를 할 때 사용함 -->
+	<form  method="get">
 		<div>
 			<label> hey hey </label>
 		</div>
 		<div>
 			 <br><label>write text in here</label>
 			<input type="text" name="y">
+			
 		</div>
 		<div>
 			<input type="submit" value="보내기">
 		</div>
-		<textarea></textarea>
-	</form>
+		<div>
+			<textarea><%=request.getParameter("y") %></textarea>
+		</div>
+		
+	</table>
+		</form>
 </body>
 </html>

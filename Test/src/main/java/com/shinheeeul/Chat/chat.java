@@ -26,7 +26,7 @@ public class chat extends HttpServlet {
 		//out.println(app.getAttribute("h"));
 
 		
-		res.sendRedirect("/Test/chat.html");
+		res.sendRedirect("/Test/chat2.jsp");
 	}
 
 }
