@@ -113,5 +113,21 @@ url mapping은 (이름).jsp 으로 매핑된다. -> 혼자 다른데에 생성�
 
 JSP code block
 : html에서 문자 그대로가 아닌 코드 처리를 위해 사용되는 것
-<% int x = 3; %>
+
+- <% int x = 3; %>
 이를 서블릿 코드에 추가를 해달라는 의미
+
+- <%=y%>
+out.print(y);와 같은 의미
+
+- <%! public int sum(int a,int b){} %>
+'<%!' 는 해당 코드를 _jspService 함수 밖, 즉, 클래스의 전역 변수, 메서드로 선언하고 싶을 때 사용 - 기본적으론 _jspService라는 곳에 servlet 코드가 추가가 되기에 이를 이렇게 사용
+
+- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+페이지 지시자 블록, 일반적인 키 값, 데이터를 저장한다. 어떠한 형태의 데이터 타입을 지시할지 정하는 것 -> jsp to servlet에서 들어가는 추가 코드 때문에 <%%>로는 페이지 맨 처음에 적어놔도 오류가 발생
+
+-<%-- --%>
+jsp 주석
+
+
+--변수명이나 함수명은 내장 객체와 안 겹치도록 주의!
