@@ -148,6 +148,11 @@ Controller&Model은 기존 servlet 파일에 넣고 View만 jsp로 만들면?
 - 포워딩 : Controller와 View를 이어 코딩 흐름을 계속 이어나갈 수 있게 하는 것.
 Dispatcher : 포워딩을 도와주는 것 -> 1개 존재함.
 
+request : 포워딩을 사용하기 위해 두개의 servlet이 공유하는 저장소
+.setAttribute를 이용하여 사용
+
+page : jsp 내에서 page context : page 내에서 사용 가능한 servlet 객체들을 모아놓은 녀석 -> request 처럼 사용할 수도 있다!
+
 EL(Expression Language)
 : View를 위한 데이터 추출 표현식
 
@@ -159,4 +164,21 @@ request.getAttribute("cnt") = ${cnt}
 
 - Map
 ((Map)request.getAttribute("n")).get("title") = ${n.title}
+
+
+${cnt}를 했을 때 page에서 cnt라는 변수가 있을 수도, request에 있을 수도? 둘다에 존재할 수도? 있다.
+
+이때 탐색 순서가 page -> request -> session -> application이 된다.
+
+그런데 page에도 같은 변수가 있는데 request에 있는 변수를 사용하고 싶다면?
+Scope를 통해 사용할 수 있다.
+(pageScope, requestScope, sessionScope, applicationScope) -> 각자의 저장소에서만 꺼내온다
+-> ${sessionScope.cnt}
+
+param -> input의 name과 form을 통해 전달되는 변수를 통한 값을 가져올 수 있다.
+->${param.n}
+
+header -> header의 정보도 추출가능
+
+pageContext -> pageContext도 사용가능
 
