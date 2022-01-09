@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/calc2")
+@WebServlet("/calc3")
 
-public class Calc2 extends HttpServlet {
+public class Calc3 extends HttpServlet {
 
 	
 	@Override
@@ -38,8 +38,6 @@ public class Calc2 extends HttpServlet {
 		
 		if(op.equals("=")) {
 			
-			//int x = (Integer) application.getAttribute("value");
-			//int x = (Integer) session.getAttribute("value");
 			int x = 0;
 			for(Cookie c : cookies) {
 			if(c.getName().equals("value")) {
@@ -48,8 +46,6 @@ public class Calc2 extends HttpServlet {
 				}
 			}
 			int y = v;
-			//String operator = (String) application.getAttribute("op");
-			//String operator = (String) session.getAttribute("op");
 			String operator = "";
 			for(Cookie c : cookies) {
 			if(c.getName().equals("op")) {
@@ -70,11 +66,6 @@ public class Calc2 extends HttpServlet {
 			
 		}
 		else {
-			//application.setAttribute("value", v); //map 컬렉션과 비슷한 느낌
-			//application.setAttribute("op", op);
-			
-			//session.setAttribute("value", v); //map 컬렉션과 비슷한 느낌
-			//session.setAttribute("op", op);
 			
 			Cookie value_cookie = new Cookie("value", String.valueOf(v)); //쿠키는 반드시 url에 사용가능한 문자열로만 보내야 한다. JSON을 통해 변해서 전달 가능
 			Cookie op_cookie = new Cookie("op",op);
