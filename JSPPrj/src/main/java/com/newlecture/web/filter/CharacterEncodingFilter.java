@@ -21,9 +21,9 @@ public class CharacterEncodingFilter implements Filter {
 		arg0.setCharacterEncoding("UTF-8");
 		arg1.setCharacterEncoding("UTF-8");
 		arg1.setContentType("text/html; charset=UTF-8");
-		System.out.println("before filter");
+		//System.out.println("before filter");
 		arg2.doFilter(arg0, arg1);
-		System.out.println("after filter");
+		//System.out.println("after filter");
 		
 		
 
