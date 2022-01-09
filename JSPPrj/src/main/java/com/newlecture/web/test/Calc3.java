@@ -3,6 +3,9 @@ package com.newlecture.web.test;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -18,65 +21,55 @@ import javax.servlet.http.HttpSession;
 
 public class Calc3 extends HttpServlet {
 
-	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		
 		PrintWriter out = resp.getWriter();
-		String v_ = req.getParameter("value");
-		String op = req.getParameter("operator");
 		
-		ServletContext application = req.getServletContext(); //application 저장소
-		HttpSession session = req.getSession(); // session 저장소
-		Cookie[] cookies = req.getCookies();
-				
-		int v = 0;
-		
-		if(!v_.equals("")) v= Integer.parseInt(v_);
-		
-		if(op.equals("=")) {
-			
-			int x = 0;
-			for(Cookie c : cookies) {
-			if(c.getName().equals("value")) {
-				x = Integer.parseInt(c.getValue());
-				break;
-				}
-			}
-			int y = v;
-			String operator = "";
-			for(Cookie c : cookies) {
-			if(c.getName().equals("op")) {
-				operator = c.getValue();
-				break;
-				}
-			}
-			int result = 0;
-			
-			if(operator.equals("+"))
-				result = x+y;
-			
-			else
-				result = x-y;
-			
+		String value = req.getParameter("value");
+		String operator = req.getParameter("operator");
+		String dot = req.getParameter("dot");
 
-			out.println("result = " + result);
+		String exp = "";
+		Cookie[] cookies = req.getCookies();
+
+		if (cookies != null) {
+
+			for (Cookie c : cookies) {
+				if (c.getName().equals("exp")) {
+					exp = c.getValue();
+					break;
+				}
+			}
+		}
+
+		if ((operator != null) && operator.equals("=")) {
+			// engine 삭제됨
+			/*ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
+			try {
+				exp = (String) engine.eval(exp);
+			} catch (ScriptException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
 			
+		} 
+		else if ((operator != null) && operator.equals("C")) {
+			exp = "";
 		}
 		else {
-			
-			Cookie value_cookie = new Cookie("value", String.valueOf(v)); //쿠키는 반드시 url에 사용가능한 문자열로만 보내야 한다. JSON을 통해 변해서 전달 가능
-			Cookie op_cookie = new Cookie("op",op);
-			value_cookie.setPath("/calc2");// 해당 servlet에만 가져오라고 설정가능
-			op_cookie.setPath("/calc2");
-			
-			value_cookie.setMaxAge(24*60*60); // 초단위, 만료 날짜를 설정 가능
-			
-			resp.addCookie(value_cookie);
-			resp.addCookie(op_cookie);
-			resp.sendRedirect("/calc2.html");
+			exp += (value == null) ? "" : value;
+			exp += (operator == null) ? "" : operator;
+			exp += (dot == null) ? "" : dot;
 		}
+		
+		Cookie expCookie = new Cookie("exp", exp);
+		 if ((operator != null) && operator.equals("C")) {
+			 //쿠키가 남지 않고 바로 없어짐.
+				expCookie.setMaxAge(0);
+		 }
+		resp.addCookie(expCookie);
+		resp.sendRedirect("/calcpage");
 	}
 }

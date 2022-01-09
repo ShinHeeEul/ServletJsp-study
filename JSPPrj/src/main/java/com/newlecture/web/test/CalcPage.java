@@ -18,14 +18,25 @@ import javax.servlet.http.HttpSession;
 
 public class CalcPage extends HttpServlet {
 
-	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		
 		PrintWriter out = resp.getWriter();
-		
+
+		String exp = "0";
+		Cookie[] cookies = req.getCookies();
+
+		if (cookies != null) {
+
+			for (Cookie c : cookies) {
+				if (c.getName().equals("exp")) {
+					exp = c.getValue();
+					break;
+				}
+			}
+		}
+
 		out.write("");
 		out.write("<!DOCTYPE html>");
 		out.write("<html>");
@@ -50,22 +61,22 @@ public class CalcPage extends HttpServlet {
 		out.write("<body>");
 		out.write("<form action=\"calc3\" method=\"post\">");
 		out.write("<!-- div = Division의 약자로 보통 레이아웃 배치를 할 때 사용함 -->");
-				
+
 		out.write("<table>");
 		out.write("<tr>");
-		out.printf("<td class=\"output\" colspan=\"4\">%d</td>",3+4);
+		out.printf("<td class=\"output\" colspan=\"4\">%s</td>", exp);
 		out.write("</tr>");
 		out.write("<tr>");
 		out.write("	<td><input type=\"submit\" name =\"operator\" value=\"CE\"></td>");
 		out.write(" <td><input type=\"submit\" name =\"operator\" value=\"C\"></td>");
 		out.write("	<td><input type=\"submit\" name =\"operator\" value=\"BS\"></td>");
-		out.write("	<td><input type=\"submit\" name =\"operator\" value=\"÷\"></td>");
+		out.write("	<td><input type=\"submit\" name =\"operator\" value=\"/\"></td>");
 		out.write("</tr>");
 		out.write("	<tr>");
 		out.write("		<td><input type=\"submit\" name =\"value\" value=\"7\"></td>");
 		out.write("		<td><input type=\"submit\" name =\"value\" value=\"8\"></td>");
 		out.write("		<td><input type=\"submit\" name =\"value\" value=\"9\"></td>");
-		out.write("		<td><input type=\"submit\" name =\"operator\" value=\"×\"></td>");
+		out.write("		<td><input type=\"submit\" name =\"operator\" value=\"*\"></td>");
 		out.write("	</tr>");
 		out.write("	<tr>");
 		out.write("		<td><input type=\"submit\" name =\"value\" value=\"4\"></td>");
