@@ -131,3 +131,32 @@ jsp 주석
 
 
 --변수명이나 함수명은 내장 객체와 안 겹치도록 주의!
+
+jsp -> 짜다보면 spaghetti 형식으로 많이 짜짐
+이를 주의하자 해서 나오게 된게 MVC model1 방식임 - 코드 블록을 최소화하자는 취지
+
+입력과 제어를 담당하는 : Controller [자바 코드]
+출력을 담당하는 : View[HTML 코드]
+그러한 출력 데이터 : Model
+
+MVC Model2
+: Controller와 Model / View를 다른 파일로 구분해서 더 쉽게 볼 수 있게 하면 어떨까?
+즉, 물리적으로 구분되어 있다.
+Controller&Model은 기존 servlet 파일에 넣고 View만 jsp로 만들면?
+따로 유지 관리, 성능 개선등 여러 장점이 있다.
+
+- 포워딩 : Controller와 View를 이어 코딩 흐름을 계속 이어나갈 수 있게 하는 것.
+Dispatcher : 포워딩을 도와주는 것 -> 1개 존재함.
+
+EL(Expression Language)
+: View를 위한 데이터 추출 표현식
+
+- 기본 변수
+request.getAttribute("cnt") = ${cnt}
+
+- array나 list인 경우
+((List)request.getAttribute("cnt")).get(0) = ${list[0]}
+
+- Map
+((Map)request.getAttribute("n")).get("title") = ${n.title}
+

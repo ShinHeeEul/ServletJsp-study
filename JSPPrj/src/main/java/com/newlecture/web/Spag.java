@@ -1,6 +1,8 @@
 package com.newlecture.web;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,6 +18,8 @@ public class Spag extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int num = 0;
 		String result;
+		
+		
 		String num_ = req.getParameter("n");
 		if (num_ != null && !num_.equals(""))
 			num = Integer.parseInt(num_);
@@ -33,6 +37,18 @@ public class Spag extends HttpServlet{
 		
 		//server 내의 또하나의 저장소 request
 		req.setAttribute("result", result);
+		
+		//Array List
+		String[] names = {"newlec", "dragon"};
+		req.setAttribute("names", names);
+		
+		//Map
+		Map<String , Object> notice = new HashMap<String, Object>();
+		
+		notice.put("id", 1);
+		notice.put("title", "EL은 조아요");
+		
+		req.setAttribute("notice", notice);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/spag.jsp");
 		//servlet 파일의 request, response를 jsp 파일의 request, response로 할 수 있게 된다.
