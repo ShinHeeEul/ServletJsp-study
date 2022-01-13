@@ -198,7 +198,7 @@ not ! empty
 * / div % mod
 + -
 - 비교 연산자
-< > <= >=(lt gt le ge) -> 왜 굳이 두가지? 
+< > <= >=(lt gt le ge) -> 왜 굳이 두가지? html에서 <을 쓰기에 별로 좋지 않음.
 == != (eq ne)
 - 관계 연산자
 && and
