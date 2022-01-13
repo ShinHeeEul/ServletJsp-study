@@ -15,6 +15,7 @@
 	Statement st = con.createStatement();
 	ResultSet rs = st.executeQuery(sql);
 %>
+	
 
 <!DOCTYPE html>
 <html>
@@ -278,11 +279,8 @@
     </body>
     
     </html>
-    
-    <% 
-
+    <%
 	rs.close();
 	st.close();
 	con.close();
-	
-    %>
+	%>
