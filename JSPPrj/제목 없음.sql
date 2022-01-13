@@ -10,15 +10,17 @@ CREATE TABLE NOTICE
 );
 
 insert ALL
-into notice values (6, 'ÀüÈ­¹øÈ£·Î ¿¬¶ôÁÖ½Ã±â ¹Ù¶ø´Ï´Ù. 010-5900-7430', 'quest', '¿¬¶ôÃ³¸¦ ³²±é´Ï´Ù.', current_timestamp, 23, null)
-into notice values (7, '¼±¹İ-Á¢½Ã-±×¸© ÀÌ ¼¼°¡Áö¿ä~~', 'okay', 'soso', current_timestamp, 0, null)
-into notice values (1,  'JDBC¶õ ¹«¾ùÀÎ°¡?', 'enwlec', 'aaa', current_timestamp, 0, null)
-into notice values (2, 'JDBC µå¶óÀÌ¹ö ´Ù¿î·Îµå ¹æ¹ı', 'dragon', 'aaa', current_timestamp, 0, null)
-into notice values (3, 'ÆÄ¶ó¹ÌÅÍ¸¦ °¡Áö´Â ¹®Àå ½ÇÇàÇÏ±â', 'good', 'aaa', current_timestamp, 0, null)
-into notice values (4, 'JSP¿¡¼­ JDBC »ç¿ëÇÏ±â', 'dragon', 'ddd', current_timestamp, 0, null)
-into notice values (5, 'Service °èÃş Ãß°¡ÇÏ±â', 'good', 'qqq', current_timestamp, 0, null)
+into notice values (6, 'ì „í™”ë²ˆí˜¸ë¡œ ì—°ë½ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤. 010-5900-7430', 'quest', 'ì—°ë½ì²˜ë¥¼ ë‚¨ê¹ë‹ˆë‹¤.', current_timestamp, 23, null)
+into notice values (7, 'ì„ ë°˜-ì ‘ì‹œ-ê·¸ë¦‡ ì´ ì„¸ê°€ì§€ìš”~~', 'okay', 'soso', current_timestamp, 0, null)
+into notice values (1,  'JDBCë€ ë¬´ì—‡ì¸ê°€?', 'enwlec', 'aaa', current_timestamp, 0, null)
+into notice values (2, 'JDBC ë“œë¼ì´ë²„ ë‹¤ìš´ë¡œë“œ ë°©ë²•', 'dragon', 'aaa', current_timestamp, 0, null)
+into notice values (3, 'íŒŒë¼ë¯¸í„°ë¥¼ ê°€ì§€ëŠ” ë¬¸ì¥ ì‹¤í–‰í•˜ê¸°', 'good', 'aaa', current_timestamp, 0, null)
+into notice values (4, 'JSPì—ì„œ JDBC ì‚¬ìš©í•˜ê¸°', 'dragon', 'ddd', current_timestamp, 0, null)
+into notice values (5, 'Service ê³„ì¸µ ì¶”ê°€í•˜ê¸°', 'good', 'qqq', current_timestamp, 0, null)
 into notice values (8, null, 'newlec', null, current_timestamp, 0, null)
 select * from dual;
+
+delete from notice;
 
 select * from notice;
 
