@@ -152,24 +152,24 @@
 							<tbody>
 								<tr>
 									<th>제목</th>
-									<td class="text-align-left text-indent text-strong text-orange" colspan="3">${title}</td>
+									<td class="text-align-left text-indent text-strong text-orange" colspan="3">${n.title}</td>
 								</tr>
 								<tr>
 									<th>작성일</th>
-									<td class="text-align-left text-indent" colspan="3">${regDate}</td>
+									<td class="text-align-left text-indent" colspan="3">${n.regDate}</td>
 								</tr>
 								<tr>
 									<th>작성자</th>
-									<td>${writerId}</td>
+									<td>${n.writerId}</td>
 									<th>조회수</th>
-									<td>${hit}</td>
+									<td>${n.hit}</td>
 								</tr>
 								<tr>
 									<th>첨부파일</th>
-									<td colspan="3">${files}</td>
+									<td colspan="3">${n.files}</td>
 								</tr>
 								<tr class="content">
-									<td colspan="4">${content}</td>
+									<td colspan="4">${n.content}</td>
 								</tr>
 							</tbody>
 						</table>

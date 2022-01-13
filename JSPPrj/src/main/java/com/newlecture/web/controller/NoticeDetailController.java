@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.newlecture.web.entity.Notice;
+
 @WebServlet("/notice/detail")
 public class NoticeDetailController extends HttpServlet{
 	
@@ -40,17 +42,31 @@ public class NoticeDetailController extends HttpServlet{
 			String files = rs.getString("FILES");
 			String content = rs.getString("CONTENT");
 			
+			/*
 			req.setAttribute("title", title);
 			req.setAttribute("regDate", regDate);
 			req.setAttribute("writerId", writerId);
 			req.setAttribute("hit", hit);
 			req.setAttribute("files", files);
 			req.setAttribute("content", content);
+			*/
+			
+			Notice notice = new Notice(id,
+					title,
+					regDate,
+					writerId,
+					hit,
+					files,
+					content);
+			
+			
+			req.setAttribute("n", notice);
 
 			rs.close();
 			st.close();
 			con.close();
-		} catch (ClassNotFoundException e) {
+		}
+		catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
