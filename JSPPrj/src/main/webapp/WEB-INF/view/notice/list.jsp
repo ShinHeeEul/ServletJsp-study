@@ -184,9 +184,9 @@
 					for(Notice n : list){ 
 						pageContext.setAttribute("n", n);
 					%> --%>
-					<c:forEach var="n" items="${list}">
+					<c:forEach var="n" items="${list}" begin="0" end ="7" varStatus="st"> 
 					<tr>
-						<td>${n.id}</td>
+						<td>${st.index + 1} / ${n.id}</td>
 						<td class="title indent text-align-left">
 						<a href="detail?id=${n.id}">
 						${n.title}
