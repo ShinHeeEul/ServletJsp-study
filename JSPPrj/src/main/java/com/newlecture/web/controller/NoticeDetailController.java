@@ -82,7 +82,7 @@ public class NoticeDetailController extends HttpServlet{
 		
 		//foward
 		//작업했던 내용들 이어줘서 계속 작업할 수 있게
-		req.getRequestDispatcher("/notice/detail.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/view/notice/detail.jsp").forward(req, resp);
 		
 	}
 }
