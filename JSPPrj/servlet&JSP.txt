@@ -212,7 +212,7 @@ JSTL(JSP Standard Tag Library)
 
 5가지 범주의 라이브러리
 core : 태그라이브러리가 필요로 했던 제어 행위 담당
-<c:out><c:remove><c:set><c:choose><c:when>...
+<c:remove><c:set><c:choose><c:when><c:otherwise><c:forEach><c:forTokens><c:url><c:catch>...
 formating : 날짜, 숫자 등 포메팅
 functions : 데이터를 꺼내서 사용할 때 문자열 조작이 필요할 때 
 - 이 밑은 사용이 바람직하지 않음
