@@ -44,10 +44,18 @@ public class NoticeService {
 	}
 	
 	public Notice getNextNotice(int id) {
+		String sql = "select id from "
+				+ "(select * from notice order by id) "
+				+ "where id>3 and rownum = 1";
+		
 		return null;
 	}
 	
 	public Notice getprevNotice(int id) {
+		String sql = "select id from notice "
+				+ "where id = (select id from "
+				+ "(select * from notice order by id desc) "
+				+ "where id<3 and rownum = 1)";
 		return null;
 	}
 
