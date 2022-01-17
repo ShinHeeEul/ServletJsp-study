@@ -35,7 +35,7 @@ public class NoticeService {
 		String sql = "select * from("
 				+ "    select row_number() over (order by regdate desc) num,"
 				+ "    notice.* from notice where " + field +" like ?"
-				+ ") where num between ? and ?";
+				+ ") where num between ? and ? order by id";
 		
 		
 		

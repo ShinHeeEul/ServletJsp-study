@@ -111,7 +111,7 @@
 				<nav class="menu text-menu first margin-top">
 					<h1>고객센터메뉴</h1>
 					<ul>
-						<li><a class="current" href="/customer/notice">공지사항</a></li>
+						<li><a class="current" href="/notice/list">공지사항</a></li>
 						<li><a class="" href="/customer/faq">자주하는 질문</a></li>
 						<li><a class="" href="/customer/question">수강문의</a></li>
 						<li><a class="" href="/customer/event">이벤트</a></li>
@@ -189,17 +189,16 @@
 					for(Notice n : list){ 
 						pageContext.setAttribute("n", n);
 					%> --%>
-							<c:forEach var="n" items="${list}" begin="0" end="7"
-								varStatus="st">
+							<c:forEach var="n" items="${list}" begin="0" end="9" varStatus="st">
 								<tr>
 									<td>
-										<%--${st.index + 1} /  --%>${n.id}</td>
+										<%--${st.index + 1} /  --%>${st.index + 1}</td>
 									<td class="title indent text-align-left"><a
 										href="detail?id=${n.id}"> ${n.title} </a></td>
 									<td>${n.writerId}</td>
 									<!-- 연도 : y,  달 : M(대문자 M), 일 : d 시 : h 분 : m 초 : s-->
 									<td><fmt:formatDate pattern="yyyy-MM-dd" value="${n.regDate}"/></td>
-									<td>${n.hit})</td>
+									<td>${n.hit}</td>
 								</tr>
 							</c:forEach>
 							<%-- <%} %> --%>
@@ -223,7 +222,7 @@
 					<div>
 
 						<c:if test="${startNum>1}">
-							<a href="?p=${startNum-5}&t=&q=" class="btn btn-prev">이전</a>
+							<a href="?p=${startNum-5}&f=${param.f}&q=${param.q}" class="btn btn-prev">이전</a>
 						</c:if>
 						<c:if test="${startNum<=1}">
 							<span class="btn btn-prev" onclick="alert('이전 페이지가 없습니다.');">이전</span>
@@ -236,13 +235,13 @@
 						<c:forEach begin="0" end="4" var="i">
 							<c:if test="${lastNum>=(startNum+i)}">
 								<li><a class="-text- orange bold"
-									href="?p=${startNum+i}&t=&q=">${startNum+i}</a></li>
+									href="?p=${startNum+i}&f=${param.f}&q=${param.q}">${startNum+i}</a></li>
 							</c:if>
 						</c:forEach>
 					</ul>
 					<div>
 						<c:if test="${startNum+5<lastNum}">
-							<a href="?p=${startNum+5}&t=&q=" class="btn btn-next">다음</a>
+							<a href="?p=${startNum+5}&f=${param.f}&q=${param.q}" class="btn btn-next">다음</a>
 						</c:if>
 						<c:if test="${startNum+5>=lastNum}">
 							<span class="btn btn-next" onclick="alert('다음 페이지가 없습니다.');">다음</span>
