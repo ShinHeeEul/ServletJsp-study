@@ -205,8 +205,9 @@
 
 							<tr>
 								<th>다음글</th>
-								<td colspan="3" class="text-align-left text-indent">다음글이
-									없습니다.</td>
+								<td colspan="3" class="text-align-left text-indent">
+								<a class="text-blue text-strong" href="/notice/detail?id=${nn.id}">${nn.title}</a>
+								</td>
 							</tr>
 
 
@@ -215,7 +216,7 @@
 							<tr>
 								<th>이전글</th>
 								<td colspan="3" class="text-align-left text-indent"><a
-									class="text-blue text-strong" href="">스프링 DI 예제 코드</a></td>
+									class="text-blue text-strong" href="/notice/detail?id=${pn.id}">${pn.title}</a></td>
 							</tr>
 
 

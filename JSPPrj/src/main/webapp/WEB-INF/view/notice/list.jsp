@@ -239,10 +239,10 @@
 						</c:forEach>
 					</ul>
 					<div>
-						<c:if test="${startNum+5<lastNum}">
+						<c:if test="${startNum+4<lastNum}">
 							<a href="?p=${startNum+5}&f=${param.f}&q=${param.q}" class="btn btn-next">다음</a>
 						</c:if>
-						<c:if test="${startNum+5>=lastNum}">
+						<c:if test="${startNum+4>=lastNum}">
 							<span class="btn btn-next" onclick="alert('다음 페이지가 없습니다.');">다음</span>
 						</c:if>
 					</div>

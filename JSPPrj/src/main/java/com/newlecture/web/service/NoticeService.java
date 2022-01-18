@@ -32,11 +32,14 @@ public class NoticeService {
 	
 	//검색 기능
 	public List<Notice> getNoticeList(String field/*title, writer_id*/, String query/*A*/, int page){
-		String sql = "select * from("
+		/*String sql = "select * from("
 				+ "    select row_number() over (order by regdate desc) num,"
 				+ "    notice.* from notice where " + field +" like ?"
 				+ ") where num between ? and ? order by id";
+		*/
 		
+		String sql = "select * from (select notice.* from notice where " + field + " like ?)"
+				+ "where id between ? and ? order by id";
 		
 		
 		
@@ -136,7 +139,6 @@ public class NoticeService {
 		Notice notice = null;
 		String sql = "select * from notice where id=?";
 		
-		List<Notice> list = new ArrayList<>();
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -154,14 +156,13 @@ public class NoticeService {
 				String files = rs.getString("FILES");
 				String content = rs.getString("CONTENT");
 				
-				Notice nnotice = new Notice(nid,
+				notice = new Notice(nid,
 						title,
 						regDate,
 						writerId,
 						hit,
 						files,
 						content);
-				list.add(nnotice);
 			
 			}
 			
@@ -180,13 +181,12 @@ public class NoticeService {
 	}
 	
 	public Notice getNextNotice(int id) {
-		String sql = "select id from "
+		String sql = "select * from "
 				+ "(select * from notice order by id) "
 				+ "where id>? and rownum = 1";
 		
 		Notice notice = null;
 		
-		List<Notice> list = new ArrayList<>();
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -204,14 +204,13 @@ public class NoticeService {
 				String files = rs.getString("FILES");
 				String content = rs.getString("CONTENT");
 				
-				Notice nnotice = new Notice(nid,
+				notice = new Notice(nid,
 						title,
 						regDate,
 						writerId,
 						hit,
 						files,
 						content);
-				list.add(nnotice);
 			
 			}
 			
@@ -230,15 +229,14 @@ public class NoticeService {
 	}
 	
 	public Notice getprevNotice(int id) {
-		String sql = "select id from notice "
+		String sql = "select * from notice "
 				+ "where id = (select id from "
 				+ "(select * from notice order by id desc) "
 				+ "where id<? and rownum = 1)";
 
 
 		Notice notice = null;
-		
-		List<Notice> list = new ArrayList<>();
+
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -256,14 +254,13 @@ public class NoticeService {
 				String files = rs.getString("FILES");
 				String content = rs.getString("CONTENT");
 				
-				Notice nnotice = new Notice(nid,
+				notice = new Notice(nid,
 						title,
 						regDate,
 						writerId,
 						hit,
 						files,
 						content);
-				list.add(nnotice);
 			
 			}
 			

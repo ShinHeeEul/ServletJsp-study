@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.newlecture.web.entity.Notice;
+import com.newlecture.web.service.NoticeService;
 
 @WebServlet("/notice/detail")
 public class NoticeDetailController extends HttpServlet{
@@ -23,60 +24,16 @@ public class NoticeDetailController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int id = Integer.parseInt(req.getParameter("id"));
 		
-		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
-		String sql = "SELECT * FROM NOTICE WHERE ID=?";
+		NoticeService service = new NoticeService();
 		
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			Connection con = DriverManager.getConnection(url,"\"Weed\"", "southkorea1");
-			PreparedStatement st = con.prepareStatement(sql);
-			st.setInt(1, id);
-			ResultSet rs = st.executeQuery();
-			
-			rs.next();
-			
-			String title = rs.getString("TITLE");
-			Date regDate = rs.getDate("REGDATE");
-			String writerId = rs.getString("WRITER_ID");
-			String hit = rs.getString("HIT");
-			String files = rs.getString("FILES");
-			String content = rs.getString("CONTENT");
-			
-			/*
-			req.setAttribute("title", title);
-			req.setAttribute("regDate", regDate);
-			req.setAttribute("writerId", writerId);
-			req.setAttribute("hit", hit);
-			req.setAttribute("files", files);
-			req.setAttribute("content", content);
-			*/
-			
-			Notice notice = new Notice(id,
-					title,
-					regDate,
-					writerId,
-					hit,
-					files,
-					content);
-			
-			
-			req.setAttribute("n", notice);
-
-			rs.close();
-			st.close();
-			con.close();
-		}
-		catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Notice p_notice = service.getprevNotice(id);
+		Notice notice = service.getNotice(id);
+		Notice n_notice = service.getNextNotice(id);
 		
+		req.setAttribute("pn", p_notice);
+		req.setAttribute("n", notice);
+		req.setAttribute("nn", n_notice);
 		
-		
-	
 		//redirect
 		//아예 다른 페이지로 가버리는 방법 -> 아예 로그인 페이지로 가거나, 게시글 등록 후 목록 페이지로 가기
 		
