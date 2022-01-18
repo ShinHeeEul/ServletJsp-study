@@ -68,7 +68,7 @@ delete from notice where id = 4;
 select * from (select * from notice order by id) where id > 3 and rownum = 1;
 
 insert ALL
-into notice values (12, 'hell', 'shinheeeul', 'kk', current_timestamp, 0, null)
+into notice values (13, 'aa.zip', 'shinheeeul', 'kk', current_timestamp, 0, 'aa.zip')
 select * from dual;
 
 -----------------------------
@@ -78,3 +78,10 @@ as
 select n.id, n.title, n.writer_id, n.regdate, n.hit, n.files, COUNT(C.ID) CMT_COUNT from notice N 
 LEFT JOIN "COMMENT" C on n.id = c.notice_id 
 group by n.id, n.title, n.writer_id, n.regdate, n.hit, n.files;
+
+select * from notice;
+
+select n.id, n.title, n.writer_id, n.regdate, n.hit, n.files, COUNT(C.ID) CMT_COUNT from notice N 
+LEFT JOIN "COMMENT" C on n.id = c.notice_id 
+group by n.id, n.title, n.writer_id, n.regdate, n.hit, n.files;
+
