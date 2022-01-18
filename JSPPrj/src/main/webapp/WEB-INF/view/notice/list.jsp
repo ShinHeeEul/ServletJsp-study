@@ -194,7 +194,7 @@
 									<td>
 										<%--${st.index + 1} /  --%>${st.index + 1}</td>
 									<td class="title indent text-align-left"><a
-										href="detail?id=${n.id}"> ${n.title} </a></td>
+										href="detail?id=${n.id}"> ${n.title} <span style="color:red;" >[${n.cmtCount}]</span></a></td>
 									<td>${n.writerId}</td>
 									<!-- 연도 : y,  달 : M(대문자 M), 일 : d 시 : h 분 : m 초 : s-->
 									<td><fmt:formatDate pattern="yyyy-MM-dd" value="${n.regDate}"/></td>

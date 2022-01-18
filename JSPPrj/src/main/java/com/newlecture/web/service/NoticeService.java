@@ -11,18 +11,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.newlecture.web.entity.Notice;
+import com.newlecture.web.entity.Noticeview;
 
 public class NoticeService {
 	//page 보이게 구현하는 내용
 	
 	private String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
 	
-	public List<Notice> getNoticeList(){
+	public List<Noticeview> getNoticeList(){
 		
 		return getNoticeList("title","",1);
 	}
 	
-	public List<Notice> getNoticeList(int page){
+	public List<Noticeview> getNoticeList(int page){
 		
 		return getNoticeList("title", "", page);
 	}
@@ -31,19 +32,19 @@ public class NoticeService {
 	//10, 20, 30, 40 -> page * 10
 	
 	//검색 기능
-	public List<Notice> getNoticeList(String field/*title, writer_id*/, String query/*A*/, int page){
+	public List<Noticeview> getNoticeList(String field/*title, writer_id*/, String query/*A*/, int page){
 		/*String sql = "select * from("
 				+ "    select row_number() over (order by regdate desc) num,"
 				+ "    notice.* from notice where " + field +" like ?"
 				+ ") where num between ? and ? order by id";
 		*/
 		
-		String sql = "select * from (select notice.* from notice where " + field + " like ?)"
+		String sql = "select * from (select * from notice_view where " + field + " like ?)"
 				+ "where id between ? and ? order by id";
 		
 		
 		
-		List<Notice> list = new ArrayList<>();
+		List<Noticeview> list = new ArrayList<>();
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -61,15 +62,17 @@ public class NoticeService {
 				String writerId = rs.getString("WRITER_ID");
 				String hit = rs.getString("HIT");
 				String files = rs.getString("FILES");
-				String content = rs.getString("CONTENT");
-				
-				Notice notice = new Notice(id,
+				//String content = rs.getString("CONTENT");
+				int cmtCount = rs.getInt("CMT_COUNT");
+			
+				Noticeview notice = new Noticeview (id,
 						title,
 						regDate,
 						writerId,
 						hit,
 						files,
-						content);
+						//content,
+						cmtCount);
 				list.add(notice);
 			
 			}
