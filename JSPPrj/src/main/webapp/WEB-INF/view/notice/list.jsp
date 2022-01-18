@@ -163,10 +163,10 @@
 					</form>
 				</div>
 
-				<c:set var="page" value="${(param.p == null)?1:param.p}"></c:set>
+				<c:set var="page" value="${(empty param.p)?1:param.p}"></c:set>
 				<c:set var="startNum" value="${page-(page-1)%5}" />
 				<!-- 임시 변수 태그 -->
-				<c:set var="lastNum" value="23" />
+				<c:set var="lastNum" value="56" />
 				<!-- 변할 수 있음 -->
 
 				<div class="notice margin-top">
@@ -210,7 +210,8 @@
 				<div class="indexer margin-top align-right">
 					<h3 class="hidden">현재 페이지</h3>
 					<div>
-						<span class="text-orange text-strong">1</span> / 1 pages
+						<fmt:parseNumber var="pages" integerOnly="true" value="${lastNum/10 + 1}" />
+						<span class="text-orange text-strong">${(empty param.p)?1:param.p}</span> / ${pages} pages
 					</div>
 				</div>
 
@@ -229,12 +230,10 @@
 						</c:if>
 					</div>
 
-
-
 					<ul class="-list- center">
 						<c:forEach begin="0" end="4" var="i">
 							<c:if test="${lastNum>=(startNum+i)}">
-								<li><a class="-text- orange bold"
+								<li><a class="-text- ${(page==(startNum+i))?'orange':''} bold"
 									href="?p=${startNum+i}&f=${param.f}&q=${param.q}">${startNum+i}</a></li>
 							</c:if>
 						</c:forEach>
