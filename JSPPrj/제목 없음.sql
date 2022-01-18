@@ -56,10 +56,18 @@ select notice.* from notice where title like '%%';
 
 select * from notice where title like '%%' and id between 1 and 10 order by id;
 
-select * from (select row_number() over (order by regdate desc) num, 
-notice.* from notice where title like '%%')
-where num between 1 and 10 order by id;
 
+select * from (select notice.* from notice where title like '%%')
+where id between 1 and 10 order by id;
 -----------------
 
 select count(ID) count from (select * from notice where title  like '%전화%');
+
+delete from notice where id = 4;
+
+select * from (select * from notice order by id) where id > 3 and rownum = 1;
+
+insert ALL
+into notice values (12, 'hell', 'shinheeeul', 'kk', current_timestamp, 0, null)
+select * from dual;
+
