@@ -85,3 +85,4 @@ select n.id, n.title, n.writer_id, n.regdate, n.hit, n.files, COUNT(C.ID) CMT_CO
 LEFT JOIN "COMMENT" C on n.id = c.notice_id 
 group by n.id, n.title, n.writer_id, n.regdate, n.hit, n.files;
 
+select * from notice_view;
