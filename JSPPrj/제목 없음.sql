@@ -59,3 +59,7 @@ select * from notice where title like '%%' and id between 1 and 10 order by id;
 select * from (select row_number() over (order by regdate desc) num, 
 notice.* from notice where title like '%%')
 where num between 1 and 10 order by id;
+
+-----------------
+
+select count(ID) count from (select * from notice where title  like '%전화%');
