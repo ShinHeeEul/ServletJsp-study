@@ -57,7 +57,7 @@ select notice.* from notice where title like '%%';
 select * from notice where title like '%%' and id between 1 and 10 order by id;
 
 
-select * from (select notice.* from notice where title like '%%')
+select * from (select * from notice_view where title like '%%')
 where id between 1 and 10 order by id;
 -----------------
 
@@ -71,3 +71,10 @@ insert ALL
 into notice values (12, 'hell', 'shinheeeul', 'kk', current_timestamp, 0, null)
 select * from dual;
 
+-----------------------------
+
+create view notice_view
+as 
+select n.id, n.title, n.writer_id, n.regdate, n.hit, n.files, COUNT(C.ID) CMT_COUNT from notice N 
+LEFT JOIN "COMMENT" C on n.id = c.notice_id 
+group by n.id, n.title, n.writer_id, n.regdate, n.hit, n.files;
