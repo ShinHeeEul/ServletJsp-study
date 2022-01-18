@@ -166,7 +166,7 @@
 				<c:set var="page" value="${(empty param.p)?1:param.p}"></c:set>
 				<c:set var="startNum" value="${page-(page-1)%5}" />
 				<!-- 임시 변수 태그 -->
-				<c:set var="lastNum" value="56" />
+				<c:set var="lastNum" value="${count/10 + 1}" />
 				<!-- 변할 수 있음 -->
 
 				<div class="notice margin-top">
@@ -210,7 +210,7 @@
 				<div class="indexer margin-top align-right">
 					<h3 class="hidden">현재 페이지</h3>
 					<div>
-						<fmt:parseNumber var="pages" integerOnly="true" value="${lastNum/10 + 1}" />
+						<fmt:parseNumber var="pages" integerOnly="true" value="${lastNum}" />
 						<span class="text-orange text-strong">${(empty param.p)?1:param.p}</span> / ${pages} pages
 					</div>
 				</div>

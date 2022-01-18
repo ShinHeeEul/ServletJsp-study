@@ -95,7 +95,7 @@ public class NoticeService {
 	public int getNoticeCount(String field, String query) {
 		
 		String sql = "select count(ID) count from ("
-				+ "    notice.* from notice where " + field +" like ? order by regdate desc"
+				+ "select * from notice where " + field +" like ?"
 				+ ")";
 		
 		int count = 0;
@@ -111,26 +111,8 @@ public class NoticeService {
 			
 			ResultSet rs = st.executeQuery();
 			
-			count = rs.getInt("count");
-			
-			while(rs.next()) {
-				int id = rs.getInt("ID");
-				String title = rs.getString("TITLE");
-				Date regDate = rs.getDate("REGDATE");
-				String writerId = rs.getString("WRITER_ID");
-				String hit = rs.getString("HIT");
-				String files = rs.getString("FILES");
-				String content = rs.getString("CONTENT");
-				
-				Notice notice = new Notice(id,
-						title,
-						regDate,
-						writerId,
-						hit,
-						files,
-						content);
-				list.add(notice);
-			}
+			if(rs.next())
+				count = rs.getInt("count");
 			
 			rs.close();
 			st.close();
