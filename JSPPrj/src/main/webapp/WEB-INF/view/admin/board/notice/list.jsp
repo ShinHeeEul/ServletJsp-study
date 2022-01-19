@@ -157,6 +157,8 @@
 					</form>
 				</div>
 
+				<form action="list" method="post">
+
 				<div class="notice margin-top">
 					<h3 class="hidden">공지사항 목록</h3>
 					<table class="table">
@@ -172,6 +174,8 @@
 							</tr>
 						</thead>
 						<tbody>
+						
+							
 
 							<c:forEach var="n" items="${list}" begin="0" end="9" varStatus="st">
 								<tr>
@@ -184,10 +188,9 @@
 									<td><fmt:formatDate pattern="yyyy-MM-dd" value="${n.regDate}"/></td>
 									<td>${n.hit}</td>
 									
-								<td><input type="checkbox" name="open"></td>
-								<td><input type="checkbox" name="del"></td>
-								</tr>
-							
+								<td><input type="checkbox" name="open-id" value="${n.id}"></td>
+								<td><input type="checkbox" name="del-id" value="${n.id}"></td>
+								</tr>							
 							</c:forEach>
 
 
@@ -214,6 +217,8 @@
 					<input type="submit" class="btn-text btn-default" value="일괄삭제">
 					<a class="btn-text btn-default" href="reg.html">글쓰기</a>				
 				</div>
+
+				</form>
 
 				<div class="margin-top align-center pager">
 

@@ -53,4 +53,17 @@ public class ListController extends HttpServlet{
 
 		req.getRequestDispatcher("/WEB-INF/view/admin/board/notice/list.jsp").forward(req, resp);
 	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String[] openIds = req.getParameterValues("open-id");
+		String[] delIds = req.getParameterValues("del-id");
+		
+		for(String openId : openIds)
+			System.out.printf("open id : %s\n", openId);
+		
+
+		for(String delId : delIds)
+			System.out.printf("del id : %s\n", delId);
+	}
 }
