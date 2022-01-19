@@ -18,9 +18,64 @@ public class NoticeService {
 	
 	private String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
 	
+	public int removeNoticeAll(int[] ids) {
+		
+		return 0;
+	}
+	
+	public int pubNoticeAll(int[] ids) {
+		return 0;
+	}
+	
+	public int insertNotice(Notice notice) {
+		
+		
+		String sql = "insert into (TITLE, CONTENT, WRITER_ID, PUB) VALUES(?,?,?,?)";
+		
+		int result = 0;
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url,"\"Weed\"", "southkorea1");
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1,  notice.getTitle());
+			st.setString(2, notice.getContent());
+			st.setString(3, notice.getWriterId());
+			st.setBoolean(4, notice.getPub());
+			
+			result = st.executeUpdate(); // insert, update, delete 할 때 사용
+			
+			st.close();
+			con.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	
+	public int deleteNotice(int id) {
+		
+		return 0;
+	}
+	
+	public int updateNotice(Notice notice) {
+		
+		return 0;
+	}
+	
+	public List<Notice> getNoticeNewestList() {
+		return null;
+	}
+	
 	public List<Noticeview> getNoticeList(){
 		
-		return getNoticeList("title","",1);
+		return getNoticeList("title", "", 1);
 	}
 	
 	public List<Noticeview> getNoticeList(int page){
@@ -64,6 +119,7 @@ public class NoticeService {
 				String files = rs.getString("FILES");
 				//String content = rs.getString("CONTENT");
 				int cmtCount = rs.getInt("CMT_COUNT");
+				boolean pub = rs.getBoolean("pub");
 			
 				Noticeview notice = new Noticeview (id,
 						title,
@@ -71,6 +127,7 @@ public class NoticeService {
 						writerId,
 						hit,
 						files,
+						pub,
 						//content,
 						cmtCount);
 				list.add(notice);
@@ -158,6 +215,7 @@ public class NoticeService {
 				String hit = rs.getString("HIT");
 				String files = rs.getString("FILES");
 				String content = rs.getString("CONTENT");
+				boolean pub = rs.getBoolean("pub");
 				
 				notice = new Notice(nid,
 						title,
@@ -165,7 +223,8 @@ public class NoticeService {
 						writerId,
 						hit,
 						files,
-						content);
+						content,
+						pub);
 			
 			}
 			
@@ -206,6 +265,7 @@ public class NoticeService {
 				String hit = rs.getString("HIT");
 				String files = rs.getString("FILES");
 				String content = rs.getString("CONTENT");
+				boolean pub = rs.getBoolean("pub");
 				
 				notice = new Notice(nid,
 						title,
@@ -213,7 +273,8 @@ public class NoticeService {
 						writerId,
 						hit,
 						files,
-						content);
+						content,
+						pub);
 			
 			}
 			
@@ -256,6 +317,7 @@ public class NoticeService {
 				String hit = rs.getString("HIT");
 				String files = rs.getString("FILES");
 				String content = rs.getString("CONTENT");
+				boolean pub = rs.getBoolean("pub");
 				
 				notice = new Notice(nid,
 						title,
@@ -263,7 +325,8 @@ public class NoticeService {
 						writerId,
 						hit,
 						files,
-						content);
+						content,
+						pub);
 			
 			}
 			
@@ -279,6 +342,41 @@ public class NoticeService {
 		}
 		
 		return notice;
+	}
+
+	public int deleteNoticeAll(int[] ids) {
+		// TODO Auto-generated method stub
+		
+		String params = "";
+		
+		for(int i =0; i<ids.length;i++) {
+			params += ids[i];
+			if(i < ids.length-1)
+				params+=",";
+		}
+		
+		
+		String sql = "delete notice where id in ("+ params +")";
+		
+		int result = 0;
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url,"\"Weed\"", "southkorea1");
+			Statement st = con.createStatement();
+			result = st.executeUpdate(sql); // insert, update, delete 할 때 사용
+			
+			st.close();
+			con.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 
 }
