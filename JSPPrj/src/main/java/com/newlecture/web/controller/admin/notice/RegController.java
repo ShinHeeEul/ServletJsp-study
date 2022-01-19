@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.newlecture.web.entity.Notice;
+import com.newlecture.web.service.NoticeService;
 
 @WebServlet("/admin/board/notice/reg")
 public class RegController extends HttpServlet {
@@ -24,16 +25,23 @@ public class RegController extends HttpServlet {
 		String title = req.getParameter("title");
 		String content = req.getParameter("content");
 		String isOpen = req.getParameter("open");
+		boolean pub = false;
+		
+		if(isOpen != null)
+			pub = true;
+		
 		
 		Notice notice = new Notice();
 		notice.setTitle(title);
 		notice.setContent(content);
-		//notice.setPub();
+		notice.setPub(pub);
+		//현재 접속한 사용자
+		notice.setWriterId("newlec");
 		
 		
-		PrintWriter out = resp.getWriter();
-		out.printf("title %s <br>", title);
-		out.printf("content %s <br>", content);
-		out.printf("isopen %s <br>", isOpen);
+		NoticeService service = new NoticeService();
+		int result = service.insertNotice(notice);
+		
+		resp.sendRedirect("list");
 	}
 }

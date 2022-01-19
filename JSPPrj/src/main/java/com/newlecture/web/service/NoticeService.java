@@ -29,8 +29,35 @@ public class NoticeService {
 	
 	public int insertNotice(Notice notice) {
 		
-		return 0;
+		
+		String sql = "insert into (TITLE, CONTENT, WRITER_ID, PUB) VALUES(?,?,?,?)";
+		
+		int result = 0;
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url,"\"Weed\"", "southkorea1");
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1,  notice.getTitle());
+			st.setString(2, notice.getContent());
+			st.setString(3, notice.getWriterId());
+			st.setBoolean(4, notice.getPub());
+			
+			result = st.executeUpdate(); // insert, update, delete 할 때 사용
+			
+			st.close();
+			con.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
+
 	
 	public int deleteNotice(int id) {
 		

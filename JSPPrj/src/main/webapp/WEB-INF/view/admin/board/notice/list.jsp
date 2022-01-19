@@ -216,7 +216,7 @@
 					<!-- value 값은 눌린 버튼은 안가고 눌린 버튼은 가지 않음 -->
 					<input type="submit" class="btn-text btn-default" name="cmd" value="일괄공개">
 					<input type="submit" class="btn-text btn-default" name="cmd" value="일괄삭제">
-					<a class="btn-text btn-default" href="reg.html">글쓰기</a>				
+					<a class="btn-text btn-default" href="reg">글쓰기</a>				
 				</div>
 
 				</form>
