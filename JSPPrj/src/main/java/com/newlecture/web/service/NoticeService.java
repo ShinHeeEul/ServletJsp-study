@@ -309,4 +309,39 @@ public class NoticeService {
 		return notice;
 	}
 
+	public int deleteNoticeAll(int[] ids) {
+		// TODO Auto-generated method stub
+		
+		String params = "";
+		
+		for(int i =0; i<ids.length;i++) {
+			params += ids[i];
+			if(i < ids.length-1)
+				params+=",";
+		}
+		
+		
+		String sql = "delete notice where id in ("+ params +")";
+		
+		int result = 0;
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url,"\"Weed\"", "southkorea1");
+			Statement st = con.createStatement();
+			result = st.executeUpdate(sql); // insert, update, delete 할 때 사용
+			
+			st.close();
+			con.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
 }
