@@ -86,3 +86,13 @@ LEFT JOIN "COMMENT" C on n.id = c.notice_id
 group by n.id, n.title, n.writer_id, n.regdate, n.hit, n.files;
 
 select * from notice_view;
+
+
+
+--------------
+--sequence - 일련번호(중복 안됨, 계속 계속 증가해야 됨)
+
+INSERT INTO NOTICE( TITLE, WRITER_ID)
+VALUES ('시퀀스 예제2', 'NEWLEC');
+
+SELECT NOTICE_ID_SEQ.NEXTVAL FROM DUAL;
