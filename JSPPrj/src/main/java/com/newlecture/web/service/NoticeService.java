@@ -30,7 +30,7 @@ public class NoticeService {
 	public int insertNotice(Notice notice) {
 		
 		
-		String sql = "insert into (TITLE, CONTENT, WRITER_ID, PUB) VALUES(?,?,?,?)";
+		String sql = "insert into notice (TITLE, CONTENT, WRITER_ID, PUB) VALUES(?,?,?,?)";
 		
 		int result = 0;
 		
