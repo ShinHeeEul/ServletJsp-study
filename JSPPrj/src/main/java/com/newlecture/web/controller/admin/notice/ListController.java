@@ -58,12 +58,16 @@ public class ListController extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String[] openIds = req.getParameterValues("open-id");
 		String[] delIds = req.getParameterValues("del-id");
+		String cmd = req.getParameter("cmd");
 		
+		if(cmd.equals("일괄공개")) {
 		for(String openId : openIds)
 			System.out.printf("open id : %s\n", openId);
-		
+		}
 
+		else {
 		for(String delId : delIds)
 			System.out.printf("del id : %s\n", delId);
+		}
 	}
 }
