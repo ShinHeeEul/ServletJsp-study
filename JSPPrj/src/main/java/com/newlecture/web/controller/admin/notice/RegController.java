@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.newlecture.web.entity.Notice;
+
 @WebServlet("/admin/board/notice/reg")
 public class RegController extends HttpServlet {
 	@Override
@@ -22,6 +24,11 @@ public class RegController extends HttpServlet {
 		String title = req.getParameter("title");
 		String content = req.getParameter("content");
 		String isOpen = req.getParameter("open");
+		
+		Notice notice = new Notice();
+		notice.setTitle(title);
+		notice.setContent(content);
+		//notice.setPub();
 		
 		
 		PrintWriter out = resp.getWriter();
